@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Maide Irmak Altan — Game Audio & Sound Design</title>
+<title>Irmak Altan — Game Audio & Sound Design</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -198,6 +198,15 @@
     overflow: hidden;
     padding: 80px 24px 60px;
   }
+  .hero-bg-img {
+    position: absolute; 
+    inset: 0; 
+    background-image: url('WhatsApp Image 2026-06-28 at 23.41.50.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    opacity: 0.15; 
+    z-index: -1;
+  }
   .hero-grid {
     position: absolute; inset: 0;
     background-image:
@@ -274,7 +283,7 @@
     color: var(--muted);
   }
   .scroll-line {
-    width: 1px; height: 40px;
+    width: 1px height: 40px;
     background: linear-gradient(to bottom, var(--accent), transparent);
     animation: scrollAnim 2s ease-in-out infinite;
   }
@@ -330,6 +339,15 @@
     margin-bottom: 16px;
     font-weight: 300;
   }
+  .about-image {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
   .about-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -357,47 +375,6 @@
   .stat-row:last-child { border-bottom: none; }
   .stat-label { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; flex-shrink: 0; }
   .stat-val { color: var(--accent2); font-size: clamp(13px, 1.8vw, 15px); text-align: right; }
-
-  /* ─── SKILLS ─── */
-  .skills-section { background: var(--surface); width: 100%; padding: clamp(60px, 8vw, 80px) 0; }
-  .skills-inner { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-  .skill-block {
-    background: var(--bg);
-    padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 36px);
-    border: 1px solid var(--border);
-    transition: background 0.3s, border-color 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .skill-block::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 0;
-    background: var(--glow);
-    transition: height 0.4s;
-  }
-  .skill-block:hover { background: var(--surface2); border-color: var(--accent); }
-  .skill-block:hover::before { height: 100%; }
-  .skill-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 16px; }
-  .skill-block h3 { font-size: clamp(16px, 2.5vw, 22px); font-weight: 400; margin-bottom: 10px; }
-  .skill-block p { color: var(--muted); font-size: clamp(13px, 1.8vw, 15px); line-height: 1.7; margin-bottom: 14px; }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-  .skill-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    padding: 4px 9px;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 2px;
-    text-transform: uppercase;
-  }
 
   /* ─── WORKS ─── */
   .work-category { margin-bottom: 48px; }
@@ -552,40 +529,24 @@
   footer span { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
 
   /* ─── RESPONSIVE BREAKPOINTS ─── */
-
-  /* Tablet landscape 768–1024 */
   @media (max-width: 1024px) {
     .nav-links { gap: 16px; }
-    .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .tracks-grid { grid-template-columns: repeat(2, 1fr); }
   }
-
-  /* Tablet portrait + mobile ≤768 */
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
-
     .about-grid { grid-template-columns: 1fr; }
     .stat-val { text-align: left; }
-
-    .skills-grid { grid-template-columns: 1fr; }
-
     .tracks-grid { grid-template-columns: repeat(2, 1fr); }
-
     .jams-grid { grid-template-columns: 1fr; }
-
     .work-item { flex-wrap: wrap; }
     .work-meta { width: auto; text-align: right; }
-
     .sound-header { flex-direction: column; align-items: flex-start; }
-
     .hero-scroll { display: none; }
-
     footer { flex-direction: column; text-align: center; }
   }
-
-  /* Mobile small ≤480 */
   @media (max-width: 480px) {
     .tracks-grid { grid-template-columns: 1fr; }
     .hero-tag { letter-spacing: 0.18em; }
@@ -597,10 +558,8 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMobileMenu()" data-en="About" data-tr="Hakkımda">About</a>
-  <a href="#skills" onclick="closeMobileMenu()" data-en="Skills" data-tr="Yetenekler">Skills</a>
   <a href="#works" onclick="closeMobileMenu()" data-en="Works" data-tr="Çalışmalar">Works</a>
   <a href="#sound" onclick="closeMobileMenu()" data-en="Compositions" data-tr="Kompozisyonlar">Compositions</a>
   <a href="#sounddesign" onclick="closeMobileMenu()" data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</a>
@@ -613,13 +572,11 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">M.I. Altan</a>
+  <a href="#" class="nav-logo">Irmak Altan</a>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#about" data-en="About" data-tr="Hakkımda">About</a></li>
-      <li><a href="#skills" data-en="Skills" data-tr="Yetenekler">Skills</a></li>
       <li><a href="#works" data-en="Works" data-tr="Çalışmalar">Works</a></li>
       <li><a href="#sound" data-en="Compositions" data-tr="Kompozisyonlar">Compositions</a></li>
       <li><a href="#sounddesign" data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</a></li>
@@ -637,8 +594,8 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
+  <div class="hero-bg-img"></div>
   <div class="hero-grid"></div>
   <div class="hero-orb"></div>
   <div class="hero-tag"
@@ -646,11 +603,11 @@
     data-tr="Oyun Sesi · Ses Tasarımı · Müzik Prodüksiyonu">
     Game Audio · Sound Design · Music Production
   </div>
-  <h1 class="hero-name">Maide<br><em>Irmak</em><br>Altan</h1>
+  <h1 class="hero-name">Irmak<br><em>Altan</em></h1>
   <p class="hero-subtitle"
-    data-en="Composing worlds through sound &nbsp;·&nbsp; Istanbul, Turkey"
-    data-tr="Sesle dünyalar inşa ediyorum &nbsp;·&nbsp; İstanbul, Türkiye">
-    Composing worlds through sound &nbsp;·&nbsp; Istanbul, Turkey
+    data-en="Composing worlds through sound  ·  Istanbul, Turkey"
+    data-tr="Sesle dünyalar inşa ediyorum  ·  İstanbul, Türkiye">
+    Composing worlds through sound  ·  Istanbul, Turkey
   </p>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -658,7 +615,6 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">01 — <span data-en="About" data-tr="Hakkımda">About</span></div>
   <div class="about-grid">
@@ -667,20 +623,21 @@
           data-tr="Ses, hikayelerin<br><em>nefes aldığı</em> yerdir.">
         Sound is how<br>stories <em>breathe.</em>
       </h2>
-      <p data-en="I'm a third-year Digital Game Design student at Bahçeşehir University, with a deep passion for crafting audio experiences that transform how players feel inside a game world."
-         data-tr="Bahçeşehir Üniversitesi'nde üçüncü sınıf Dijital Oyun Tasarımı öğrencisiyim; oyuncuların bir oyun dünyası içinde hissettiklerini dönüştüren ses deneyimleri yaratmaya derin bir tutku duyuyorum.">
-        I'm a third-year Digital Game Design student at Bahçeşehir University, with a deep passion for crafting audio experiences that transform how players feel inside a game world.
+      <p data-en="I am Irmak, a senior Digital Game Design student who is passionate about creating new worlds through sound. At the same time, I am pursuing a minor in Piano at the Conservatory and working as a game music composer."
+         data-tr="Ben Irmak, ses aracılığıyla yeni dünyalar yaratma tutkusuna sahip son sınıf Dijital Oyun Tasarımı öğrencisiyim. Aynı zamanda Konservatuvarda Piyano yan dalı yapıyor ve oyun müziği bestecisi olarak çalışıyorum.">
+        I am Irmak, a senior Digital Game Design student who is passionate about creating new worlds through sound. At the same time, I am pursuing a minor in Piano at the Conservatory and working as a game music composer.
       </p>
-      <p data-en="From composing adaptive loop-based soundtracks to implementing audio in FMOD and Wwise, I bridge the gap between creative vision and technical execution. I'm also a conservatory piano minor student, keeping my musical roots sharp."
-         data-tr="Adaptif loop temelli soundtrack'ler bestelemekten FMOD ve Wwise'da ses implementasyonuna kadar, yaratıcı vizyon ile teknik uygulama arasındaki köprüyü kuruyorum. Aynı zamanda konservatuarda piyano yan dal öğrencisiyim.">
-        From composing adaptive loop-based soundtracks to implementing audio in FMOD and Wwise, I bridge the gap between creative vision and technical execution. I'm also a conservatory piano minor student, keeping my musical roots sharp.
+      <p data-en="I have composed music for many games through the numerous game jams and projects I have participated in. In addition to this, I create new atmospheres through sound not only for the game industry but also for various cinematic and listening experiences."
+         data-tr="Katıldığım çok sayıda game jam ve proje sayesinde birçok oyun için müzik besteledim. Buna ek olarak, sadece oyun endüstrisi için değil, çeşitli sinematik ve dinleme deneyimleri için de ses aracılığıyla yeni atmosferler yaratıyorum.">
+        I have composed music for many games through the numerous game jams and projects I have participated in. In addition to this, I create new atmospheres through sound not only for the game industry but also for various cinematic and listening experiences.
       </p>
-      <p data-en="My goal is to build a career in game music production and sound design — creating audio that doesn't just accompany a game, but defines it."
-         data-tr="Hedefim oyun müziği prodüksiyonu ve ses tasarımı alanında kariyer yapmak; oyuna eşlik etmekle kalmayıp onu tanımlayan ses deneyimleri yaratmak.">
-        My goal is to build a career in game music production and sound design — creating audio that doesn't just accompany a game, but defines it.
+      <p data-en="My goal is to build a career primarily in game music production, composing, and sound design."
+         data-tr="Hedefim öncelikle oyun müziği prodüksiyonu, bestecilik ve ses tasarımı alanında kariyer yapmak.">
+        My goal is to build a career primarily in game music production, composing, and sound design.
       </p>
     </div>
     <div>
+      <img src="WhatsApp Image 2026-06-28 at 23.39.08.jpeg" class="about-image" alt="Irmak Altan">
       <div class="about-card">
         <div class="stat-row">
           <span class="stat-label" data-en="Status" data-tr="Durum">Status</span>
@@ -711,59 +668,8 @@
   </div>
 </section>
 
-<!-- SKILLS -->
-<div class="skills-section" id="skills">
-  <div class="skills-inner">
-    <div class="section-label">02 — <span data-en="Skills" data-tr="Yetenekler">Skills</span></div>
-    <div class="skills-grid">
-      <div class="skill-block">
-        <div class="skill-num">01</div>
-        <h3 data-en="Music & Composition" data-tr="Müzik & Kompozisyon">Music & Composition</h3>
-        <p data-en="Game music composition, adaptive and loop-based soundtracks, piano performance, classical to contemporary."
-           data-tr="Oyun müziği besteciliği, adaptif ve loop temelli soundtrack'ler, piyano performansı; klasikten çağdaşa.">
-          Game music composition, adaptive and loop-based soundtracks, piano performance, classical to contemporary.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">FL Studio</span>
-          <span class="skill-tag">Reaper</span>
-          <span class="skill-tag" data-en="Piano" data-tr="Piyano">Piano</span>
-          <span class="skill-tag" data-en="Adaptive Music" data-tr="Adaptif Müzik">Adaptive Music</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-num">02</div>
-        <h3 data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</h3>
-        <p data-en="Synthesizer exploration, audio implementation, mixing & mastering fundamentals, storytelling through sound."
-           data-tr="Synthesizer keşfi, ses implementasyonu, mixing & mastering temelleri, sesle hikaye anlatımı.">
-          Synthesizer exploration, audio implementation, mixing & mastering fundamentals, storytelling through sound.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">FMOD</span>
-          <span class="skill-tag">Wwise</span>
-          <span class="skill-tag">EQ / Comp</span>
-          <span class="skill-tag" data-en="Synths" data-tr="Synthesizer">Synths</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-num">03</div>
-        <h3 data-en="Creative Tools" data-tr="Yaratıcı Araçlar">Creative Tools</h3>
-        <p data-en="2D drawing, digital illustration, graphic design — visual storytelling that complements the audio craft."
-           data-tr="2D çizim, dijital illüstrasyon, grafik tasarım — ses sanatını tamamlayan görsel hikaye anlatımı.">
-          2D drawing, digital illustration, graphic design — visual storytelling that complements the audio craft.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag" data-en="2D Illustration" data-tr="2D İllüstrasyon">2D Illustration</span>
-          <span class="skill-tag" data-en="Graphic Design" data-tr="Grafik Tasarım">Graphic Design</span>
-          <span class="skill-tag" data-en="Jam Prototyping" data-tr="Jam Prototipleme">Jam Prototyping</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- WORKS -->
 <section id="works">
-  <div class="section-label">03 — <span data-en="Works" data-tr="Çalışmalar">Works</span></div>
+  <div class="section-label">02 — <span data-en="Works" data-tr="Çalışmalar">Works</span></div>
   <div class="works-list">
 
     <div class="work-category">
@@ -816,10 +722,9 @@
   </div>
 </section>
 
-<!-- SOUND -->
 <div class="sound-section" id="sound">
   <div class="sound-inner">
-    <div class="section-label">04 — <span data-en="Compositions" data-tr="Kompozisyonlar">Compositions</span></div>
+    <div class="section-label">03 — <span data-en="Compositions" data-tr="Kompozisyonlar">Compositions</span></div>
     <div class="sound-header">
       <h2 data-en="Listen to my work" data-tr="Çalışmalarımı dinle">Listen to my work</h2>
       <a href="https://soundcloud.com/river-382859088" target="_blank" rel="noopener"
@@ -842,11 +747,10 @@
   </div>
 </div>
 
-<!-- SOUND DESIGN -->
 <section id="sounddesign">
-  <div class="section-label">05 — <span data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</span></div>
+  <div class="section-label">04 — <span data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</span></div>
   <div style="margin-top: 8px;">
-    <a href="https://drive.google.com/file/d/15VHQtIW_mTGEFvcoBnA2hWofjrGV1xwQ/view?usp=drive_link"
+    <a href="https://youtu.be/Nu3DjQa23AM?si=0i_AXJpCLNfu9WL_"
        target="_blank" rel="noopener"
        style="display:inline-flex;align-items:center;gap:14px;border:1px solid var(--border);padding:20px 32px;border-radius:4px;text-decoration:none;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;transition:border-color 0.3s,background 0.3s,color 0.3s;"
        onmouseover="this.style.borderColor='var(--accent)';this.style.background='rgba(123,110,232,0.06)';this.style.color='var(--accent2)'"
@@ -856,18 +760,17 @@
         <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span data-en="View Redesign Work ↗" data-tr="Redesign Çalışmasını Gör ↗">View Redesign Work ↗</span>
-    </a>
+    </div>
   </div>
 </section>
 
-<!-- GAME JAMS -->
 <section id="jams">
-  <div class="section-label">06 — <span data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</span></div>
+  <div class="section-label">05 — <span data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</span></div>
   <div class="jams-grid">
     <a class="jam-card" href="https://ibrahimkayra-dural.itch.io/jester-duel" target="_blank" rel="noopener">
       <div class="jam-event">Global Game Jam · 2024</div>
       <div class="jam-name">Jester Duel</div>
-      <p class="jam-desc" data-en="Music composition &amp; sound design for a theatrical duel game." data-tr="Teatral bir düello oyunu için müzik bestesi ve ses tasarımı.">Music composition &amp; sound design for a theatrical duel game.</p>
+      <p class="jam-desc" data-en="Music composition & sound design for a theatrical duel game." data-tr="Teatral bir düello oyunu için müzik bestesi ve ses tasarımı.">Music composition & sound design for a theatrical duel game.</p>
       <div class="jam-link-label">itch.io ↗</div>
     </a>
     <a class="jam-card" href="https://dorrek61.itch.io/little-alien" target="_blank" rel="noopener">
@@ -903,7 +806,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <div class="contact-section" id="contact">
   <h2 data-en="Let's<br>create <em>together.</em>" data-tr="Birlikte<br><em>yaratalım.</em>">Let's<br>create <em>together.</em></h2>
   <p data-en="Open to game audio collaborations, freelance projects, and new opportunities."
@@ -914,11 +816,12 @@
     <a href="mailto:m.irmak.altan@gmail.com" class="contact-link primary">m.irmak.altan@gmail.com</a>
     <a href="https://soundcloud.com/river-382859088" target="_blank" rel="noopener" class="contact-link">SoundCloud</a>
     <a href="https://irmakaltan.itch.io" target="_blank" rel="noopener" class="contact-link">itch.io</a>
+    <a href="https://open.spotify.com/intl-tr/artist/0AzSgn4F53jZbkg8hLpUs7?si=pYghjHPkSbCUuTjUim2MoA" target="_blank" rel="noopener" class="contact-link">Spotify</a>
   </div>
 </div>
 
 <footer>
-  <span>© 2025 Maide Irmak Altan</span>
+  <span>© 2025 Irmak Altan</span>
   <span data-en="Game Audio · Sound Design · Istanbul" data-tr="Oyun Sesi · Ses Tasarımı · İstanbul">Game Audio · Sound Design · Istanbul</span>
 </footer>
 
@@ -982,7 +885,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     requestAnimationFrame(anim);
   })();
 
-  document.querySelectorAll('a, button, .skill-block, .jam-card, .work-item').forEach(el => {
+  document.querySelectorAll('a, button, .jam-card, .work-item').forEach(el => {
     el.addEventListener('mouseenter', () => { ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='rgba(196,181,244,1)'; });
     el.addEventListener('mouseleave', () => { ring.style.width='32px'; ring.style.height='32px'; ring.style.borderColor='rgba(196,181,244,0.7)'; });
   });
@@ -1010,7 +913,7 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.skill-block, .work-item, .jam-card, .track-card, .about-card').forEach(el => {
+document.querySelectorAll('.work-item, .jam-card, .track-card, .about-card, .about-image').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.55s ease, transform 0.55s ease, border-color 0.3s, background 0.3s, padding-left 0.3s';
