@@ -294,7 +294,7 @@
   }
 
   /* ─── SECTIONS ─── */
-  section {
+  section, .sound-section {
     padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
     max-width: 1200px;
     margin: 0 auto;
@@ -376,36 +376,6 @@
   .stat-label { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; flex-shrink: 0; }
   .stat-val { color: var(--accent2); font-size: clamp(13px, 1.8vw, 15px); text-align: right; }
 
-  /* ─── WORKS ─── */
-  .work-category { margin-bottom: 48px; }
-  .work-cat-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent3);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .work-cat-title::after { content: ''; flex: 1; height: 1px; background: rgba(232,195,110,0.2); }
-  .work-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    transition: padding-left 0.3s;
-  }
-  .work-item:hover { padding-left: 10px; }
-  .work-item:hover .work-title { color: var(--accent2); }
-  .work-left { flex: 1; min-width: 0; }
-  .work-title { font-size: clamp(15px, 2.2vw, 19px); font-weight: 300; transition: color 0.3s; }
-  .work-role { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); margin-top: 3px; letter-spacing: 0.07em; }
-  .work-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.07em; text-align: right; flex-shrink: 0; white-space: nowrap; }
-
   /* ─── SOUND ─── */
   .sound-section { background: var(--surface); width: 100%; padding: clamp(60px, 8vw, 80px) 0; }
   .sound-inner { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px); }
@@ -442,13 +412,17 @@
     border: 1px solid var(--border);
     padding: clamp(14px, 2.5vw, 24px);
     border-radius: 4px;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
-  .track-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .track-card:hover { border-color: var(--accent); transform: translateY(-3px); background: var(--surface2); }
   .track-waveform { height: 34px; margin-bottom: 10px; display: flex; align-items: flex-end; gap: 2px; }
   .bar { flex: 1; background: var(--accent); opacity: 0.3; border-radius: 1px; transition: opacity 0.3s; }
   .track-card:hover .bar { opacity: 0.7; }
-  .track-title { font-size: clamp(12px, 1.8vw, 15px); font-weight: 400; margin-bottom: 4px; }
+  .track-title { font-size: clamp(12px, 1.8vw, 15px); font-weight: 400; margin-bottom: 4px; transition: color 0.3s; }
+  .track-card:hover .track-title { color: var(--accent2); }
   .track-sub { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .soundcloud-embed-wrap { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
 
@@ -541,8 +515,6 @@
     .stat-val { text-align: left; }
     .tracks-grid { grid-template-columns: repeat(2, 1fr); }
     .jams-grid { grid-template-columns: 1fr; }
-    .work-item { flex-wrap: wrap; }
-    .work-meta { width: auto; text-align: right; }
     .sound-header { flex-direction: column; align-items: flex-start; }
     .hero-scroll { display: none; }
     footer { flex-direction: column; text-align: center; }
@@ -560,7 +532,6 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMobileMenu()" data-en="About" data-tr="Hakkımda">About</a>
-  <a href="#works" onclick="closeMobileMenu()" data-en="Works" data-tr="Çalışmalar">Works</a>
   <a href="#sound" onclick="closeMobileMenu()" data-en="Compositions" data-tr="Kompozisyonlar">Compositions</a>
   <a href="#sounddesign" onclick="closeMobileMenu()" data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</a>
   <a href="#jams" onclick="closeMobileMenu()" data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</a>
@@ -577,7 +548,6 @@
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#about" data-en="About" data-tr="Hakkımda">About</a></li>
-      <li><a href="#works" data-en="Works" data-tr="Çalışmalar">Works</a></li>
       <li><a href="#sound" data-en="Compositions" data-tr="Kompozisyonlar">Compositions</a></li>
       <li><a href="#sounddesign" data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</a></li>
       <li><a href="#jams" data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</a></li>
@@ -668,63 +638,9 @@
   </div>
 </section>
 
-<section id="works">
-  <div class="section-label">02 — <span data-en="Works" data-tr="Çalışmalar">Works</span></div>
-  <div class="works-list">
-
-    <div class="work-category">
-      <div class="work-cat-title" data-en="Game Audio" data-tr="Oyun Sesi">Game Audio</div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Racoonroll</div><div class="work-role" data-en="Game Soundtrack · Composer" data-tr="Oyun Soundtrack'i · Besteci">Game Soundtrack · Composer</div></div>
-        <div class="work-meta">2026</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Tropic Island Game</div><div class="work-role" data-en="Game Soundtrack · Composer" data-tr="Oyun Soundtrack'i · Besteci">Game Soundtrack · Composer</div></div>
-        <div class="work-meta">2026</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Devil's Cradle</div><div class="work-role" data-en="Radio Soundtrack + Sea Shanty · Composer" data-tr="Radyo Soundtrack'i + Deniz Türküsü · Besteci">Radio Soundtrack + Sea Shanty · Composer</div></div>
-        <div class="work-meta">Jamination 2025</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">I Remember You Barely</div><div class="work-role" data-en="Game Soundtrack · Composer" data-tr="Oyun Soundtrack'i · Besteci">Game Soundtrack · Composer</div></div>
-        <div class="work-meta">GMTK Jam 2025</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Zoneoween</div><div class="work-role" data-en="Game Soundtrack · Composer" data-tr="Oyun Soundtrack'i · Besteci">Game Soundtrack · Composer</div></div>
-        <div class="work-meta">2025</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Banana Power</div><div class="work-role" data-en="Game Soundtrack · Composer" data-tr="Oyun Soundtrack'i · Besteci">Game Soundtrack · Composer</div></div>
-        <div class="work-meta">2025</div>
-      </div>
-    </div>
-
-    <div class="work-category">
-      <div class="work-cat-title" data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Little Alien</div><div class="work-role">Global Game Jam 2025</div></div>
-        <div class="work-meta">Jan 2025</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Trigger the Punk</div><div class="work-role">MEF Jam 2025</div></div>
-        <div class="work-meta">2025</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Initialize Who</div><div class="work-role">BAU Spring Jam 2025</div></div>
-        <div class="work-meta">Spring 2025</div>
-      </div>
-      <div class="work-item">
-        <div class="work-left"><div class="work-title">Jester Duel</div><div class="work-role">Global Game Jam 2024</div></div>
-        <div class="work-meta">Jan 2024</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="sound-section" id="sound">
   <div class="sound-inner">
-    <div class="section-label">03 — <span data-en="Compositions" data-tr="Kompozisyonlar">Compositions</span></div>
+    <div class="section-label">02 — <span data-en="Compositions" data-tr="Kompozisyonlar">Compositions</span></div>
     <div class="sound-header">
       <h2 data-en="Listen to my work" data-tr="Çalışmalarımı dinle">Listen to my work</h2>
       <a href="https://soundcloud.com/river-382859088" target="_blank" rel="noopener"
@@ -732,12 +648,36 @@
          data-tr="SoundCloud'da tüm parçalar ↗">All tracks on SoundCloud ↗</a>
     </div>
     <div class="tracks-grid">
-      <div class="track-card"><div class="track-waveform" id="wf1"></div><div class="track-title">Racoonroll Soundtrack</div><div class="track-sub" data-en="Game Soundtrack · 2026" data-tr="Oyun Soundtrack'i · 2026">Game Soundtrack · 2026</div></div>
-      <div class="track-card"><div class="track-waveform" id="wf2"></div><div class="track-title">Tropic Island Soundtrack</div><div class="track-sub" data-en="Game Soundtrack · 2026" data-tr="Oyun Soundtrack'i · 2026">Game Soundtrack · 2026</div></div>
-      <div class="track-card"><div class="track-waveform" id="wf3"></div><div class="track-title">Devil's Cradle Radio</div><div class="track-sub" data-en="Game Soundtrack · 2025" data-tr="Oyun Soundtrack'i · 2025">Game Soundtrack · 2025</div></div>
-      <div class="track-card"><div class="track-waveform" id="wf4"></div><div class="track-title">I Remember You Barely</div><div class="track-sub" data-en="GMTK Jam · 2025" data-tr="GMTK Jam · 2025">GMTK Jam · 2025</div></div>
-      <div class="track-card"><div class="track-waveform" id="wf5"></div><div class="track-title">Devil's Cradle Sea Shanty</div><div class="track-sub" data-en="Game Soundtrack · 2025" data-tr="Oyun Soundtrack'i · 2025">Game Soundtrack · 2025</div></div>
-      <div class="track-card"><div class="track-waveform" id="wf6"></div><div class="track-title">Zoneoween Soundtrack</div><div class="track-sub" data-en="Game Soundtrack · 2025" data-tr="Oyun Soundtrack'i · 2025">Game Soundtrack · 2025</div></div>
+      <a class="track-card" href="https://soundcloud.com/river-382859088/racoonroll" target="_blank" rel="noopener">
+        <div class="track-waveform" id="wf1"></div>
+        <div class="track-title">Racoonroll Soundtrack</div>
+        <div class="track-sub" data-en="Game Soundtrack · 2026" data-tr="Oyun Soundtrack'i · 2026">Game Soundtrack · 2026</div>
+      </a>
+      <a class="track-card" href="https://soundcloud.com/river-382859088/tropic-island-game-soundtrack" target="_blank" rel="noopener">
+        <div class="track-waveform" id="wf2"></div>
+        <div class="track-title">Tropic Island Soundtrack</div>
+        <div class="track-sub" data-en="Game Soundtrack · 2026" data-tr="Oyun Soundtrack'i · 2026">Game Soundtrack · 2026</div>
+      </a>
+      <a class="track-card" href="https://soundcloud.com/river-382859088/devils-cradle-radio-soundtrack" target="_blank" rel="noopener">
+        <div class="track-waveform" id="wf3"></div>
+        <div class="track-title">Devil's Cradle Radio</div>
+        <div class="track-sub" data-en="Game Soundtrack · 2025" data-tr="Oyun Soundtrack'i · 2025">Game Soundtrack · 2025</div>
+      </a>
+      <a class="track-card" href="https://soundcloud.com/river-382859088/i-remember-you-barely" target="_blank" rel="noopener">
+        <div class="track-waveform" id="wf4"></div>
+        <div class="track-title">I Remember You Barely</div>
+        <div class="track-sub" data-en="GMTK Jam · 2025" data-tr="GMTK Jam · 2025">GMTK Jam · 2025</div>
+      </a>
+      <a class="track-card" href="https://soundcloud.com/river-382859088/devils-cradle-sea-shanty" target="_blank" rel="noopener">
+        <div class="track-waveform" id="wf5"></div>
+        <div class="track-title">Devil's Cradle Sea Shanty</div>
+        <div class="track-sub" data-en="Game Soundtrack · 2025" data-tr="Oyun Soundtrack'i · 2025">Game Soundtrack · 2025</div>
+      </a>
+      <a class="track-card" href="https://soundcloud.com/river-382859088/zoneoween-soundtrack" target="_blank" rel="noopener">
+        <div class="track-waveform" id="wf6"></div>
+        <div class="track-title">Zoneoween Soundtrack</div>
+        <div class="track-sub" data-en="Game Soundtrack · 2025" data-tr="Oyun Soundtrack'i · 2025">Game Soundtrack · 2025</div>
+      </a>
     </div>
     <div class="soundcloud-embed-wrap">
       <iframe width="100%" height="380" scrolling="no" frameborder="no" allow="autoplay"
@@ -748,14 +688,14 @@
 </div>
 
 <section id="sounddesign">
-  <div class="section-label">04 — <span data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</span></div>
+  <div class="section-label">03 — <span data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</span></div>
   <div class="soundcloud-embed-wrap" style="margin-top: 24px;">
     <iframe width="100%" height="380" src="https://www.youtube.com/embed/Nu3DjQa23AM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 
 <section id="jams">
-  <div class="section-label">05 — <span data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</span></div>
+  <div class="section-label">04 — <span data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</span></div>
   <div class="jams-grid">
     <a class="jam-card" href="https://farukb.itch.io/corbaz" target="_blank" rel="noopener">
       <div class="jam-event">Turkic Game Jam · 2026</div>
@@ -881,7 +821,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     requestAnimationFrame(anim);
   })();
 
-  document.querySelectorAll('a, button, .jam-card, .work-item').forEach(el => {
+  document.querySelectorAll('a, button, .jam-card, .track-card').forEach(el => {
     el.addEventListener('mouseenter', () => { ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='rgba(196,181,244,1)'; });
     el.addEventListener('mouseleave', () => { ring.style.width='32px'; ring.style.height='32px'; ring.style.borderColor='rgba(196,181,244,0.7)'; });
   });
@@ -909,7 +849,7 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.work-item, .jam-card, .track-card, .about-card, .about-image').forEach(el => {
+document.querySelectorAll('.jam-card, .track-card, .about-card, .about-image').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.55s ease, transform 0.55s ease, border-color 0.3s, background 0.3s, padding-left 0.3s';
