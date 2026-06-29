@@ -283,7 +283,7 @@
     color: var(--muted);
   }
   .scroll-line {
-    width: 1px height: 40px;
+    width: 1px; height: 40px;
     background: linear-gradient(to bottom, var(--accent), transparent);
     animation: scrollAnim 2s ease-in-out infinite;
   }
@@ -747,27 +747,22 @@
   </div>
 </div>
 
-<!-- SOUND DESIGN -->
 <section id="sounddesign">
   <div class="section-label">04 — <span data-en="Sound Design" data-tr="Ses Tasarımı">Sound Design</span></div>
-  <div style="margin-top: 8px;">
-    <a href="https://youtu.be/Nu3DjQa23AM?si=0i_AXJpCLNfu9WL_"
-       target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:14px;border:1px solid var(--border);padding:20px 32px;border-radius:4px;text-decoration:none;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;transition:border-color 0.3s,background 0.3s,color 0.3s;"
-       onmouseover="this.style.borderColor='var(--accent)';this.style.background='rgba(123,110,232,0.06)';this.style.color='var(--accent2)'"
-       onmouseout="this.style.borderColor='var(--border)';this.style.background='none';this.style.color='var(--text)'">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.6">
-        <path d="M2 12V14H14V12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span data-en="View Redesign Work ↗" data-tr="Redesign Çalışmasını Gör ↗">View Redesign Work ↗</span>
-    </a>
+  <div class="soundcloud-embed-wrap" style="margin-top: 24px;">
+    <iframe width="100%" height="380" src="https://www.youtube.com/embed/Nu3DjQa23AM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 
 <section id="jams">
   <div class="section-label">05 — <span data-en="Game Jams" data-tr="Game Jam'ler">Game Jams</span></div>
   <div class="jams-grid">
+    <a class="jam-card" href="https://farukb.itch.io/corbaz" target="_blank" rel="noopener">
+      <div class="jam-event">Turkic Game Jam · 2026</div>
+      <div class="jam-name">Çorbaz</div>
+      <p class="jam-desc" data-en="Audio and music design for our Turkic Game Jam project." data-tr="Turkic Game Jam projemiz için ses tasarımı ve müzik.">Audio and music design for our Turkic Game Jam project.</p>
+      <div class="jam-link-label">itch.io ↗</div>
+    </a>
     <a class="jam-card" href="https://ibrahimkayra-dural.itch.io/jester-duel" target="_blank" rel="noopener">
       <div class="jam-event">Global Game Jam · 2024</div>
       <div class="jam-name">Jester Duel</div>
@@ -822,7 +817,7 @@
 </div>
 
 <footer>
-  <span>© 2025 Irmak Altan</span>
+  <span>© 2026 Irmak Altan</span>
   <span data-en="Game Audio · Sound Design · Istanbul" data-tr="Oyun Sesi · Ses Tasarımı · İstanbul">Game Audio · Sound Design · Istanbul</span>
 </footer>
 
